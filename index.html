@@ -868,6 +868,7 @@ function total(){
   },0);
 }
 function renderCart(){
+  saveCart();
   cartCountElement.textContent=cart.reduce((sum,item)=>sum+item.quantity,0);
   cartTotalElement.textContent=money(total());
   if(!cart.length){
