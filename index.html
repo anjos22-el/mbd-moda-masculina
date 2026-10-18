@@ -706,7 +706,51 @@ const $ = id => document.getElementById(id);
 const productGrid=$("productGrid"), cartItemsElement=$("cartItems");
 const cartCountElement=$("cartCount"), cartTotalElement=$("cartTotal");
 const cartPanel=$("cartPanel"), overlay=$("overlay"), searchInput=$("searchInput");
-let activeCategory="todos", cart=[], currentSlide=0, slideTimer;
+
+const CART_STORAGE_KEY = "mbd-cart-v1";
+
+function loadCart() {
+  try {
+    const saved = JSON.parse(
+      localStorage.getItem(CART_STORAGE_KEY) || "[]"
+    );
+
+    if (!Array.isArray(saved)) return [];
+
+    return saved
+      .filter(item =>
+        item &&
+        products.some(p => p.id === Number(item.id)) &&
+        typeof item.size === "string" &&
+        Number.isInteger(Number(item.quantity)) &&
+        Number(item.quantity) > 0
+      )
+      .map(item => ({
+        id: Number(item.id),
+        size: item.size,
+        quantity: Number(item.quantity)
+      }));
+  } catch (error) {
+    return [];
+  }
+}
+
+function saveCart() {
+  try {
+    localStorage.setItem(
+      CART_STORAGE_KEY,
+      JSON.stringify(cart)
+    );
+  } catch (error) {
+    console.warn("Não foi possível guardar o carrinho.", error);
+  }
+}
+
+let activeCategory = "todos",
+    cart = loadCart(),
+    currentSlide = 0,
+    slideTimer;
+
 
 function safeText(value){
   return String(value).replace(/[&<>"']/g,char=>({
