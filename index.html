@@ -178,6 +178,9 @@ nav a:hover{color:var(--gold-light)}
 .product-price{margin-bottom:10px;font-size:12px;font-weight:700}
 .product-price small{display:block;margin-top:4px;color:#898479;font-size:9px;font-weight:400}
 .product-actions{display:flex;gap:6px}
+.product-options{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:7px}
+.product-options label{display:grid;gap:4px;color:#777268;font-size:9px}
+.product-options select{width:100%;min-width:0;min-height:32px;padding:0 5px;border:1px solid var(--border);background:white;font-size:10px;color:var(--black)}
 .product-actions select{width:65px;min-width:0;padding:0 4px;border:1px solid var(--border);background:white;font-size:10px}
 .add-btn{flex:1;min-height:35px;padding:7px;border:1px solid var(--black);background:var(--black);color:white;font-size:9px;text-transform:uppercase}
 .add-btn:hover{background:var(--gold);color:var(--black);border-color:var(--gold)}
@@ -482,6 +485,9 @@ footer{padding:35px 0 18px;background:#0b0b0a;color:white}
   .product-grid{gap:17px 11px}
   .product-details h3{font-size:15px}
   .product-price{font-size:11px}
+  .product-options{gap:5px}
+  .product-options label{font-size:8px}
+  .product-options select{font-size:9px;min-height:31px}
   .product-actions select{width:56px}
   .add-btn{font-size:8px;padding:6px 3px}
   .brand-story{grid-template-columns:1fr;gap:20px}
@@ -667,10 +673,10 @@ footer{padding:35px 0 18px;background:#0b0b0a;color:white}
 </aside>
 
 <script>
-/* CONFIGURAÇÃO: coloca aqui o número comercial quando estiver disponível. */
+/* CONFIGURAÇÃO: número comercial da MBD (Angola, sem o sinal +). */
 const STORE = {
   name: "MBD",
-  whatsapp: ""
+  whatsapp: "946158975"
 };
 
 /*
@@ -691,14 +697,14 @@ const slides = [
 ];
 
 const products = [
-  {id:1,name:"Camisa Clássica",category:"camisas",price:18500,tag:"Elegante",image:"https://images.unsplash.com/photo-1598033129183-c4f50c736f10?auto=format&fit=crop&w=650&q=80",sizes:["S","M","L","XL"]},
-  {id:2,name:"Camisa Premium",category:"camisas",price:22000,tag:"Premium",image:"https://images.unsplash.com/photo-1603252109303-2751441dd157?auto=format&fit=crop&w=650&q=80",sizes:["S","M","L","XL"]},
-  {id:3,name:"Polo Essential",category:"polos",price:14500,tag:"Essencial",image:"https://images.unsplash.com/photo-1625910513413-5fc45e9b3b5c?auto=format&fit=crop&w=650&q=80",sizes:["S","M","L","XL"]},
-  {id:4,name:"Polo Signature",category:"polos",price:17500,tag:"Destaque",image:"https://images.unsplash.com/photo-1627225924765-552d49cf47ad?auto=format&fit=crop&w=650&q=80",sizes:["S","M","L","XL"]},
-  {id:5,name:"Calças Elegance",category:"calcas",price:25000,tag:"Clássico",image:"https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=650&q=80",sizes:["38","40","42","44"]},
-  {id:6,name:"Calças Urban",category:"calcas",price:23000,tag:"",image:"https://images.unsplash.com/photo-1473966968600-fa801b869a1a?auto=format&fit=crop&w=650&q=80",sizes:["38","40","42","44"]},
-  {id:7,name:"Relógio Classic",category:"acessorios",price:30000,tag:"Destaque",image:"https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&w=650&q=80",sizes:["Único"]},
-  {id:8,name:"Cinto Premium",category:"acessorios",price:12000,tag:"",image:"https://images.unsplash.com/photo-1624222247344-550fb8d30b9f?auto=format&fit=crop&w=650&q=80",sizes:["Único"]}
+  {id:1,name:"Camisa Clássica",category:"camisas",price:18500,tag:"Elegante",image:"https://images.unsplash.com/photo-1598033129183-c4f50c736f10?auto=format&fit=crop&w=650&q=80",sizes:["S","M","L","XL"],colors:["Branco","Preto","Azul-marinho"]},
+  {id:2,name:"Camisa Premium",category:"camisas",price:22000,tag:"Premium",image:"https://images.unsplash.com/photo-1603252109303-2751441dd157?auto=format&fit=crop&w=650&q=80",sizes:["S","M","L","XL"],colors:["Branco","Preto","Bege"]},
+  {id:3,name:"Polo Essential",category:"polos",price:14500,tag:"Essencial",image:"https://images.unsplash.com/photo-1625910513413-5fc45e9b3b5c?auto=format&fit=crop&w=650&q=80",sizes:["S","M","L","XL"],colors:["Preto","Branco","Verde-escuro"]},
+  {id:4,name:"Polo Signature",category:"polos",price:17500,tag:"Destaque",image:"https://images.unsplash.com/photo-1627225924765-552d49cf47ad?auto=format&fit=crop&w=650&q=80",sizes:["S","M","L","XL"],colors:["Azul-marinho","Preto","Branco"]},
+  {id:5,name:"Calças Elegance",category:"calcas",price:25000,tag:"Clássico",image:"https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=650&q=80",sizes:["38","40","42","44"],colors:["Preto","Azul-marinho","Bege"]},
+  {id:6,name:"Calças Urban",category:"calcas",price:23000,tag:"",image:"https://images.unsplash.com/photo-1473966968600-fa801b869a1a?auto=format&fit=crop&w=650&q=80",sizes:["38","40","42","44"],colors:["Preto","Cinza","Caqui"]},
+  {id:7,name:"Relógio Classic",category:"acessorios",price:30000,tag:"Destaque",image:"https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&w=650&q=80",sizes:["Único"],colors:["Preto","Prateado","Dourado"]},
+  {id:8,name:"Cinto Premium",category:"acessorios",price:12000,tag:"",image:"https://images.unsplash.com/photo-1624222247344-550fb8d30b9f?auto=format&fit=crop&w=650&q=80",sizes:["Único"],colors:["Preto","Castanho"]}
 ];
 
 const money = value => new Intl.NumberFormat("pt-AO",{maximumFractionDigits:0}).format(value)+" Kz";
@@ -725,11 +731,18 @@ function loadCart() {
         Number.isInteger(Number(item.quantity)) &&
         Number(item.quantity) > 0
       )
-      .map(item => ({
-        id: Number(item.id),
-        size: item.size,
-        quantity: Number(item.quantity)
-      }));
+      .map(item => {
+        const product = products.find(p => p.id === Number(item.id));
+        const color = product.colors.includes(item.color)
+          ? item.color
+          : product.colors[0];
+        return {
+          id: Number(item.id),
+          size: item.size,
+          color,
+          quantity: Number(item.quantity)
+        };
+      });
   } catch (error) {
     return [];
   }
@@ -831,34 +844,43 @@ function renderProducts(){
         <span class="product-category">${safeText(product.category)}</span>
         <h3>${safeText(product.name)}</h3>
         <div class="product-price">${money(product.price)}<small>Preço de demonstração</small></div>
+        <div class="product-options">
+          <label>Cor
+            <select aria-label="Cor de ${safeText(product.name)}" id="color-${product.id}">
+              ${product.colors.map(color=>`<option value="${safeText(color)}">${safeText(color)}</option>`).join("")}
+            </select>
+          </label>
+          <label>Tamanho
+            <select aria-label="Tamanho de ${safeText(product.name)}" id="size-${product.id}">
+              ${product.sizes.map(size=>`<option value="${safeText(size)}">${safeText(size)}</option>`).join("")}
+            </select>
+          </label>
+        </div>
         <div class="product-actions">
-          <select aria-label="Tamanho de ${safeText(product.name)}" id="size-${product.id}">
-            ${product.sizes.map(size=>`<option value="${safeText(size)}">${safeText(size)}</option>`).join("")}
-          </select>
           <button class="add-btn" data-add="${product.id}">Adicionar +</button>
         </div>
       </div>
     </article>`).join("");
 }
 
-function addToCart(id,size){
+function addToCart(id,size,color){
   const product=products.find(item=>item.id===id);
   if(!product)return;
-  const existing=cart.find(item=>item.id===id&&item.size===size);
+  const existing=cart.find(item=>item.id===id&&item.size===size&&item.color===color);
   if(existing)existing.quantity++;
-  else cart.push({id,size,quantity:1});
+  else cart.push({id,size,color,quantity:1});
   renderCart();
   openCart();
 }
-function changeQuantity(id,size,amount){
-  const item=cart.find(entry=>entry.id===id&&entry.size===size);
+function changeQuantity(id,size,color,amount){
+  const item=cart.find(entry=>entry.id===id&&entry.size===size&&entry.color===color);
   if(!item)return;
   item.quantity+=amount;
-  if(item.quantity<=0)cart=cart.filter(entry=>!(entry.id===id&&entry.size===size));
+  if(item.quantity<=0)cart=cart.filter(entry=>!(entry.id===id&&entry.size===size&&entry.color===color));
   renderCart();
 }
-function removeFromCart(id,size){
-  cart=cart.filter(item=>!(item.id===id&&item.size===size));
+function removeFromCart(id,size,color){
+  cart=cart.filter(item=>!(item.id===id&&item.size===size&&item.color===color));
   renderCart();
 }
 function total(){
@@ -881,14 +903,14 @@ function renderCart(){
     return `<div class="cart-item">
       <img src="${product.image}" alt="${safeText(product.name)}">
       <div><h3>${safeText(product.name)}</h3>
-        <p>Tamanho: ${safeText(item.size)}</p><p>${money(product.price*item.quantity)}</p>
+        <p>Cor: ${safeText(item.color)}</p><p>Tamanho: ${safeText(item.size)}</p><p>${money(product.price*item.quantity)}</p>
         <div class="qty-controls">
-          <button data-minus="${item.id}" data-size="${safeText(item.size)}" aria-label="Diminuir">−</button>
+          <button data-minus="${item.id}" data-size="${safeText(item.size)}" data-color="${safeText(item.color)}" aria-label="Diminuir">−</button>
           <span>${item.quantity}</span>
-          <button data-plus="${item.id}" data-size="${safeText(item.size)}" aria-label="Aumentar">+</button>
+          <button data-plus="${item.id}" data-size="${safeText(item.size)}" data-color="${safeText(item.color)}" aria-label="Aumentar">+</button>
         </div>
       </div>
-      <button class="remove-btn" data-remove="${item.id}" data-size="${safeText(item.size)}">Remover</button>
+      <button class="remove-btn" data-remove="${item.id}" data-size="${safeText(item.size)}" data-color="${safeText(item.color)}">Remover</button>
     </div>`;
   }).join("");
 }
@@ -922,18 +944,20 @@ document.querySelectorAll(".whatsapp-link").forEach(link=>link.addEventListener(
 productGrid.addEventListener("click",event=>{
   const button=event.target.closest("[data-add]");
   if(!button)return;
-  const id=Number(button.dataset.add),select=$("size-"+id);
-  if(select)addToCart(id,select.value);
+  const id=Number(button.dataset.add);
+  const sizeSelect=$("size-"+id),colorSelect=$("color-"+id);
+  if(sizeSelect&&colorSelect)addToCart(id,sizeSelect.value,colorSelect.value);
 });
 cartItemsElement.addEventListener("click",event=>{
   const button=event.target.closest("button");
   if(!button)return;
   const id=Number(button.dataset.plus||button.dataset.minus||button.dataset.remove);
   const size=button.dataset.size;
-  if(!id||!size)return;
-  if(button.hasAttribute("data-plus"))changeQuantity(id,size,1);
-  if(button.hasAttribute("data-minus"))changeQuantity(id,size,-1);
-  if(button.hasAttribute("data-remove"))removeFromCart(id,size);
+  const color=button.dataset.color;
+  if(!id||!size||!color)return;
+  if(button.hasAttribute("data-plus"))changeQuantity(id,size,color,1);
+  if(button.hasAttribute("data-minus"))changeQuantity(id,size,color,-1);
+  if(button.hasAttribute("data-remove"))removeFromCart(id,size,color);
 });
 document.querySelectorAll(".filter-btn").forEach(button=>{
   button.addEventListener("click",()=>{
@@ -982,7 +1006,7 @@ $("checkoutForm").addEventListener("submit",event=>{
   const data=new FormData(event.currentTarget);
   const lines=cart.map(item=>{
     const product=products.find(p=>p.id===item.id);
-    return product?`- ${product.name} | Tamanho: ${item.size} | Quantidade: ${item.quantity} | ${money(product.price*item.quantity)}`:"";
+    return product?`- ${product.name} | Cor: ${item.color} | Tamanho: ${item.size} | Quantidade: ${item.quantity} | ${money(product.price*item.quantity)}`:"";
   }).filter(Boolean);
   const message=[
     "Olá! Quero fazer uma encomenda na MBD.","",
